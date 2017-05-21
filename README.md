@@ -8,6 +8,7 @@
 ## RUN
 
 ```
+$ docker-compose run node yarn install
 $ docker-compose up
 ```
 

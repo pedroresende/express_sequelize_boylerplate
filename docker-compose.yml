@@ -9,11 +9,11 @@ services:
     ports:
       - "${DB_PORT}:3306"
   node:
-    image: node:latest
+    build: build/node
     depends_on:
       - db
     ports:
       - "${NODE_PORT}:3000"
     volumes:
       - ./:/app:cached
-    command: bash -c "cd app/ && yarn start"
+    command: bash -c "yarn start"
