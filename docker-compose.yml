@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: mysql/mysql-server:latest
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_HOST=${MYSQL_ROOT_HOST}
+    ports:
+      - "${DB_PORT}:3306"
+  node:
+    image: node:latest
+    depends_on:
+      - db
+    ports:
+      - "${NODE_PORT}:3000"
+    volumes:
+      - ./:/app:cached
+    command: bash -c "cd app/ && yarn start"
